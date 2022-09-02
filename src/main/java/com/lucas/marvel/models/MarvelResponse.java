@@ -3,7 +3,7 @@ package com.lucas.marvel.models;
 public class MarvelResponse {
 
     private int statusCode;
-    public Data data;
+    private Data data;
 
     public int getStatusCode() {
         return statusCode;

@@ -1,7 +1,6 @@
 package com.lucas.marvel.client;
 
 import com.lucas.marvel.models.MarvelResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.client.RestTemplate;
@@ -9,25 +8,25 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class MarvelClient {
 
-    private String publicKey = "22a66c451d78a0ae58b99788a7a07da1";
-    private String privateKey = "be0b10a0505455f5bd87b7c621c8b6a84fe470bb";
+    private final String publicKey = "22a66c451d78a0ae58b99788a7a07da1";
+    private final String privateKey = "be0b10a0505455f5bd87b7c621c8b6a84fe470bb";
     private static final String baseUri = "http://gateway.marvel.com/v1/public/";
-    private int limit = 100;
-    @Autowired
-    RestTemplate restTemplate;
+    private final int limit = 100;
+    private final RestTemplate restTemplate;
+    public MarvelClient(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     //GET /v1/public/characters
     public MarvelResponse getCharacters() {
         String URI = baseUri + "characters?" + authInfo() + "&limit=" + limit;
-        MarvelResponse res = restTemplate.getForObject(URI, MarvelResponse.class);
-        return res;
+        return restTemplate.getForObject(URI, MarvelResponse.class);
     }
 
     //GET /v1/public/characters/{characterId}
     public MarvelResponse getCharacterByID(Integer id) {
         String URI = baseUri + "characters/" + id + "?" + authInfo();
-        MarvelResponse res = restTemplate.getForObject(URI, MarvelResponse.class);
-        return res;
+        return restTemplate.getForObject(URI, MarvelResponse.class);
     }
 
     public String authInfo() {
