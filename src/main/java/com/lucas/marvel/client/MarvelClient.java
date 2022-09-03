@@ -8,8 +8,8 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class MarvelClient {
 
-    private final String publicKey = "22a66c451d78a0ae58b99788a7a07da1";
-    private final String privateKey = "be0b10a0505455f5bd87b7c621c8b6a84fe470bb";
+    private static final String publicKey = "22a66c451d78a0ae58b99788a7a07da1";
+    private static final String privateKey = "be0b10a0505455f5bd87b7c621c8b6a84fe470bb";
     private static final String baseUri = "http://gateway.marvel.com/v1/public/";
     private final int limit = 100;
     private final RestTemplate restTemplate;
